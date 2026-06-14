@@ -31,11 +31,6 @@ jobs:
           xorriso -osirrox on -indev out/boot.iso -extract / "$WORKDIR"
           chmod -R u+w "$WORKDIR"
 
-          # Patch repo url
-          REPO_NAME=$(echo "${{ github.repository }}" | cut -d / -f 2)
-          sed -i 's|£{repository}|${{ github.repository }}|g' iso.ks
-          sed -i 's|£{repository.name}|${REPO_NAME}|g' iso.ks
-
           # Patch UEFI grub to auto-load kickstart from GitHub
           sed -i "s|inst\.stage2|inst.ks=${KS_URL} inst.stage2|" \
             "$WORKDIR/EFI/BOOT/grub.cfg"
