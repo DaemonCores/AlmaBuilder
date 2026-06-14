@@ -43,7 +43,7 @@ jobs:
 
           # Rebuild ISO (BIOS + UEFI hybrid)
           xorriso -as mkisofs \
-            -o out/personal-server-netinstall.iso \
+            -o out/DaemonCores_AlmaLinux.iso \
             -R -J -V "PS-NETINSTALL" \
             -b isolinux/isolinux.bin \
             -c isolinux/boot.cat \
@@ -56,7 +56,7 @@ jobs:
             "$WORKDIR"
 
           rm -rf "$WORKDIR" out/boot.iso
-          ls -lh out/personal-server-netinstall.iso
+          ls -lh out/DaemonCores_AlmaLinux.iso
 
       - name: Fetch previous release state
         id: prev
@@ -74,16 +74,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           title="Net-install ISO — $(date -u +%Y-%m-%d)"
-          notes="Boot this ISO to install personal-server. Anaconda fetches the kickstart from GitHub and pulls the latest image from GHCR at install time."
+          notes="Boot this ISO to install DaemonCores AlmaLinux Build. Anaconda fetches the kickstart from GitHub and pulls the latest image from GHCR at install time."
           if [[ '${{ steps.prev.outputs.exists }}' == '1' ]]; then
             gh release edit install-iso \
               --title "$title" \
               --notes "$notes" \
               --target '${{ github.sha }}' \
               --latest=false
-            gh release upload install-iso out/personal-server-netinstall.iso --clobber
+            gh release upload install-iso out/DaemonCores_AlmaLinux.iso --clobber
           else
-            gh release create install-iso out/personal-server-netinstall.iso \
+            gh release create install-iso out/DaemonCores_AlmaLinux.iso \
               --title "$title" \
               --notes "$notes" \
               --target '${{ github.sha }}' \
