@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.7
-FROM quay.io/almalinuxorg/almalinux-bootc@latest
+FROM quay.io/almalinuxorg/almalinux-bootc:latest
 
 RUN dnf update -y \
     dnf install -y \
