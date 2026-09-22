@@ -47,10 +47,6 @@ The GitHub image workflow expects a `PAT_PKG` Actions secret with permission to 
 
 AlmaBuilder intentionally contains only the base image, Kickstart file, and two publishing workflows. It does not share the package builder, QEMU runtime tests, signed APT repository, or offline installer pipeline used by the Debian-based projects.
 
-## License
-
-[LGPL-2.1](LICENSE)
-
 ---
 
 <p>
